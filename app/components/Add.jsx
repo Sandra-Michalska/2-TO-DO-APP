@@ -1,7 +1,4 @@
-// clicking the button will trigger an event that goes to the container and there a to do is added to the state
-
-// toggle the list of todos
-
+// clicking the button triggers an event that adds a todo to the state
 var React = require('react');
 
 var Add = React.createClass({

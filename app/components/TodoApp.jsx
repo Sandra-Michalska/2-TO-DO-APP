@@ -1,52 +1,48 @@
-// app that persists data and lets you access it from anywhere
-// container component; maintains state
-// state includes: filters (search), checkboxes, text inputs...
-
 // has static data that gets passed to List and then to Todo
+// state includes: filters, checkboxes, text inputs...
 var React = require('react');
 
 var Add = require('Add');
 var Search = require('Search');
 var List = require('List');
+var uuid = require('uuid');
 
 var TodoApp = React.createClass({
     getInitialState: function () {
         return {
-            // initial values!
             showCompleted: false,
             search: '',
-            // an array of objects
             todos: [
                 {
-                    id: 1,
-                    text: 'Do sth 1'
+                    id: uuid(),
+                    text: 'Do sth 1',
+                    completed: false
                 },
                 {
-                    id: 2,
-                    text: 'Do sth 2'
+                    id: uuid(),
+                    text: 'Do sth 2',
+                    completed: true
                 },
                 {
-                    id: 3,
-                    text: 'Do sth 3'
+                    id: uuid(),
+                    text: 'Do sth 3',
+                    completed: false
                 }
             ]
-            /* BEFORE:
-                todo: this.props.todo */
-            // there will be an empty array first
         };
     },
-    /*getDefaultProps: function () {
-        return {
-			todos: 'no TO DOs yet'
-		};
-    },*/
-    // listen for new todo items being created; add new todos when the fct gets called
+    // add new todos
     handleAdd: function (todoValue) {
-
-        alert('new todo: ' + todoValue);
-        /*this.setState({
-            todos: todoValue
-        });*/
+        this.setState({
+            todos: [
+                ...this.state.todos,   // todos = the same array it was before (static data)
+                {   // a newly added todo!
+                    id: uuid(),
+                    text: todoValue,
+                    completed: false
+                }
+            ]
+        });
     },
     handleSearch: function (showCompleted, search) {
         this.setState({
@@ -54,8 +50,19 @@ var TodoApp = React.createClass({
             search: search.toLowerCase()
         });
     },
+    handleToggle: function (id) {
+        var updatedTodos = this.state.todos.map((todo) => {
+            if (todo.id === id) {
+                todo.completed = !todo.completed;
+            }
+            return todo;
+        });
+
+        this.setState({
+            todos: updatedTodos
+        });
+    },
     render: function () {
-        // var todos = this.state.todos;
         var {todos} = this.state;
 
         return (
@@ -63,7 +70,7 @@ var TodoApp = React.createClass({
                 <h1>TO DO APP</h1>
                 <Add onAdd={this.handleAdd}/>
                 <Search onSearch={this.handleSearch}/>
-                <List todos={todos}/>
+                <List todos={todos} onToggle={this.handleToggle}/>
             </div>
         );
     }

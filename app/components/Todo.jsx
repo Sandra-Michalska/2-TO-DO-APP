@@ -1,18 +1,14 @@
-// this component knows how to handle interactions (clicking the checkbox)
+// this component renders a single element in the list and handles interactions (clicking the checkbox)
 // knows how to properly render itself whether it's completed or not
-
-// List - knows how to render a list of todos that it gets passed as props
-// Todo - knows how to render a single element in the list
-
 var React = require('react');
 
 var Todo = React.createClass({
     render: function() {
-        // var todos = this.props.todos;
-        var {text, id} = this.props; // <Todo key={todo.id} {...todo}/>  <- todo = arg of map; spread operator -> text and id
+        var {id, text, completed} = this.props;
 
         return (
-            <div>
+            <div onClick={() => { this.props.onToggle(id); }}>
+                <input type="checkbox" checked={completed}/>
                 {id}. {text}
             </div>
         );

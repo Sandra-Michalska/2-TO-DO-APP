@@ -1,8 +1,4 @@
-// presentational component
-// responds to user input and passes it to the container
-// the container filters TO DOs
-
-// listen for changes
+// responds to user input (listens for changes) and passes it to the container which filters todos
 var React = require('react');
 
 var Search = React.createClass({
@@ -13,7 +9,6 @@ var Search = React.createClass({
         this.props.onSearch(showCompleted, search);
     },
     render: function() {
-        // search and onChange attributes
         return (
             <div>
                 <h2>Search your TO DOs!</h2>
