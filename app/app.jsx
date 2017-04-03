@@ -1,4 +1,4 @@
-// app that persists data and lets you access it from anywhere
+// render the TodoApp component
 var React = require('react');
 var ReactDOM = require('react-dom');
 

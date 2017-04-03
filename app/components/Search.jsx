@@ -1,4 +1,4 @@
-// responds to user input (listens for changes) and passes it to the container which filters todos
+// respond to user input and pass it to the container which filters todos
 var React = require('react');
 
 var Search = React.createClass({

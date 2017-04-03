@@ -1,5 +1,4 @@
-// this component renders a single element in the list and handles interactions (clicking the checkbox)
-// knows how to properly render itself whether it's completed or not
+// render a single element in the list
 var React = require('react');
 
 var Todo = React.createClass({
@@ -9,7 +8,7 @@ var Todo = React.createClass({
         return (
             <div onClick={() => { this.props.onToggle(id); }}>
                 <input type="checkbox" checked={completed}/>
-                {id}. {text}
+                {text}
             </div>
         );
     }

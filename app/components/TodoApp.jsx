@@ -1,42 +1,31 @@
-// has static data that gets passed to List and then to Todo
-// state includes: filters, checkboxes, text inputs...
+// update state (filters, checkboxes, text inputs...)
+// get todos out of local storage and add new todos
 var React = require('react');
+var uuid = require('uuid');
 
 var Add = require('Add');
 var Search = require('Search');
 var List = require('List');
-var uuid = require('uuid');
+var TodoAPI = require('TodoAPI');
 
 var TodoApp = React.createClass({
     getInitialState: function () {
         return {
             showCompleted: false,
             search: '',
-            todos: [
-                {
-                    id: uuid(),
-                    text: 'Do sth 1',
-                    completed: false
-                },
-                {
-                    id: uuid(),
-                    text: 'Do sth 2',
-                    completed: true
-                },
-                {
-                    id: uuid(),
-                    text: 'Do sth 3',
-                    completed: false
-                }
-            ]
+            todos: TodoAPI.getTodos()
         };
+    },
+    // update todos
+    componentDidUpdate: function () {
+        TodoAPI.setTodos(this.state.todos);
     },
     // add new todos
     handleAdd: function (todoValue) {
         this.setState({
             todos: [
-                ...this.state.todos,   // todos = the same array it was before (static data)
-                {   // a newly added todo!
+                ...this.state.todos,
+                {
                     id: uuid(),
                     text: todoValue,
                     completed: false

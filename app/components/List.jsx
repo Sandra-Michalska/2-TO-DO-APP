@@ -1,4 +1,4 @@
-// this components returns a list of todos that gets passed as props
+// return a list of todos
 var React = require('react');
 
 var Todo = require('Todo');
@@ -7,7 +7,7 @@ var List = React.createClass({
     render: function() {
         var {todos} = this.props;
 
-        // a fct to iterate over the list and return an array of jsx (Todos)
+        // iterate over the list and return an array of Todos
         var renderTodos = () => {
             return todos.map((todo) => {
                 return (

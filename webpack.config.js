@@ -7,22 +7,13 @@ module.exports = {
     resolve: {
         root: __dirname,
         modulesDirectories: [
-            // to not specify aliases for every file in the components folder;
-            // to always look for modules in the components folder by default
-            'node_modules',     // default; we can overwrite it below
-            './app/components'  // specify folders for webpack
+            'node_modules',
+            './app/components',
+            './app/api'
         ],
-        /* modulesDirectories instead of alias
-		alias: {
-            Search: 'app/components/Search.jsx',
-            Add: 'app/components/Add.jsx',
-            List: 'app/components/List.jsx',
-            Todo: 'app/components/Todo.jsx',
-            TodoApp: 'app/components/TodoApp.jsx'
-		}, */
-        /*alias: {
+        alias: {
             applicationStyles: 'app/styles/app.css'
-        },*/
+        },
         extensions: ['', '.js', '.jsx']
     },
     module: {

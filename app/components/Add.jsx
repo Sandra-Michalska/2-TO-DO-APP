@@ -1,4 +1,4 @@
-// clicking the button triggers an event that adds a todo to the state
+// add a todo to the list
 var React = require('react');
 
 var Add = React.createClass({
