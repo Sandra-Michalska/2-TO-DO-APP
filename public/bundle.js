@@ -19809,8 +19809,12 @@
 	        });
 	    },
 	    render: function render() {
-	        var todos = this.state.todos;
+	        var _state = this.state,
+	            todos = _state.todos,
+	            showCompleted = _state.showCompleted,
+	            search = _state.search;
 
+	        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, search);
 
 	        return React.createElement(
 	            'div',
@@ -19822,7 +19826,7 @@
 	            ),
 	            React.createElement(Add, { onAdd: this.handleAdd }),
 	            React.createElement(Search, { onSearch: this.handleSearch }),
-	            React.createElement(List, { todos: todos, onToggle: this.handleToggle })
+	            React.createElement(List, { todos: filteredTodos, onToggle: this.handleToggle })
 	        );
 	    }
 	});
@@ -20256,6 +20260,34 @@
 	        } catch (e) {}
 
 	        return $.isArray(todos) ? todos : [];
+	    },
+	    // show only uncompleted todos
+	    filterTodos: function filterTodos(todos, showCompleted, search) {
+	        var filteredTodos = todos;
+
+	        // filter by showCompleted
+	        filteredTodos = filteredTodos.filter(function (todo) {
+	            return !todo.completed || showCompleted;
+	        });
+
+	        // filter by search
+	        filteredTodos = filteredTodos.filter(function (todo) {
+	            var text = todo.text.toLowerCase();
+	            return search.length === 0 || text.indexOf(search) > -1;
+	        });
+
+	        // sort todos with non-completed first
+	        filteredTodos.sort(function (a, b) {
+	            if (!a.completed && b.completed) {
+	                return -1;
+	            } else if (a.completed && !b.completed) {
+	                return 1;
+	            } else {
+	                return 0;
+	            }
+	        });
+
+	        return filteredTodos;
 	    }
 	};
 
