@@ -10,14 +10,14 @@ var Search = React.createClass({
     },
     render: function() {
         return (
-            <div>
-                <h2 className="color2">Search your TO DOs!</h2>
+            <div className="presentational-components">
+                <h2>Your To Dos</h2>
                 <div>
-                    <input type="search" ref="search" placeholder="Search TO DOs" onChange={this.handleSearch}/>
+                    <input type="search" ref="search" placeholder="Search your to dos" onChange={this.handleSearch}/>
                 </div>
                 <div>
                     <input type="checkbox" ref="showCompleted" id="checkbox-completed" onChange={this.handleSearch}/>
-                    <label htmlFor="checkbox-completed">Show completed TO DOs</label>
+                    <label htmlFor="checkbox-completed" id="show-completed">Show completed to dos</label>
                 </div>
             </div>
         );

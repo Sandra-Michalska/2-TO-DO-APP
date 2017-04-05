@@ -19822,11 +19822,11 @@
 
 	        return React.createElement(
 	            'div',
-	            null,
+	            { id: 'todo-app' },
 	            React.createElement(
 	                'h1',
 	                null,
-	                'TO DO APP'
+	                'Your To Do List'
 	            ),
 	            React.createElement(Add, { onAdd: this.handleAdd }),
 	            React.createElement(Search, { onSearch: this.handleSearch }),
@@ -35907,16 +35907,16 @@
 	    render: function render() {
 	        return React.createElement(
 	            'div',
-	            null,
+	            { className: 'presentational-components' },
 	            React.createElement(
 	                'h2',
 	                null,
-	                'Add a new TO DO'
+	                'Add a To Do'
 	            ),
 	            React.createElement(
 	                'form',
 	                { onSubmit: this.handleFormSubmit },
-	                React.createElement('input', { type: 'text', ref: 'todo', placeholder: 'Add a TO DO' }),
+	                React.createElement('input', { type: 'text', ref: 'todo', placeholder: 'Your new to do' }),
 	                React.createElement(
 	                    'button',
 	                    null,
@@ -35950,16 +35950,16 @@
 	    render: function render() {
 	        return React.createElement(
 	            "div",
-	            null,
+	            { className: "presentational-components" },
 	            React.createElement(
 	                "h2",
-	                { className: "color2" },
-	                "Search your TO DOs!"
+	                null,
+	                "Your To Dos"
 	            ),
 	            React.createElement(
 	                "div",
 	                null,
-	                React.createElement("input", { type: "search", ref: "search", placeholder: "Search TO DOs", onChange: this.handleSearch })
+	                React.createElement("input", { type: "search", ref: "search", placeholder: "Search your to dos", onChange: this.handleSearch })
 	            ),
 	            React.createElement(
 	                "div",
@@ -35967,8 +35967,8 @@
 	                React.createElement("input", { type: "checkbox", ref: "showCompleted", id: "checkbox-completed", onChange: this.handleSearch }),
 	                React.createElement(
 	                    "label",
-	                    { htmlFor: "checkbox-completed" },
-	                    "Show completed TO DOs"
+	                    { htmlFor: "checkbox-completed", id: "show-completed" },
+	                    "Show completed to dos"
 	                )
 	            )
 	        );
@@ -36008,12 +36008,7 @@
 
 	        return React.createElement(
 	            'div',
-	            null,
-	            React.createElement(
-	                'h2',
-	                { className: 'color3' },
-	                'List of TODOs'
-	            ),
+	            { className: 'presentational-components', id: 'list-component' },
 	            renderTodos()
 	        );
 	    }
@@ -36053,19 +36048,23 @@
 	                timestamp = completedAt;
 	            }
 
-	            return message + moment.unix(timestamp).format('MMM Do YYYY @ h:mm a');
+	            return message + moment.unix(timestamp).format('MMMM Do, YYYY @ h:mm a');
 	        };
 
 	        return React.createElement(
 	            'div',
-	            { onClick: function onClick() {
+	            { className: 'todo-div', onClick: function onClick() {
 	                    _this.props.onToggle(id);
 	                } },
 	            React.createElement('input', { type: 'checkbox', checked: completed }),
-	            text,
 	            React.createElement(
 	                'p',
-	                { className: 'color1' },
+	                { className: 'todo' },
+	                text
+	            ),
+	            React.createElement(
+	                'p',
+	                { className: 'todo-date' },
 	                renderDate()
 	            )
 	        );
@@ -46423,7 +46422,7 @@
 
 
 	// module
-	exports.push([module.id, ".color1 {\r\n    color: blue;\r\n}\r\n\r\n.color2 {\r\n    color: green;\r\n}\r\n\r\n.color3 {\r\n    color: red;\r\n}\r\n", ""]);
+	exports.push([module.id, "body {\r\n    margin: 0;\r\n    font-family: \"Comic Sans MS\", cursive, sans-serif;\r\n}\r\n\r\n#todo-app {\r\n    width: 70%;\r\n    margin: 2em auto;\r\n    padding: 2.5em 1em;\r\n    background: #f1f1f1;\r\n    text-align: center;\r\n}\r\n\r\n.presentational-components {\r\n    padding: 0.3em 0;\r\n}\r\n\r\n#list-component {\r\n    width: 80%;\r\n    margin: 1em auto;\r\n    text-align: left;\r\n}\r\n\r\n.todo-div {\r\n    padding: 0.2em 0 0.3em;\r\n}\r\n\r\nh2 {\r\n    color: #0e940e;\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"search\"] {\r\n    font-family: inherit;\r\n    font-style: italic;\r\n    width: 70%;\r\n    margin: 0.8em 0;\r\n    padding: 0.3em;\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n    width: 13px;\r\n    height: 13px;\r\n    margin: -1px 10px 0 0;\r\n    vertical-align: middle;\r\n    cursor: pointer;\r\n}\r\n\r\nbutton {\r\n    margin: 0 0 0 1em;\r\n    padding: 0.2em 0.8em;\r\n    font-family: inherit;\r\n    font-weight: bold;\r\n    color: #6842c3;\r\n    cursor: pointer;\r\n}\r\n\r\n#show-completed {\r\n    font-size: 0.8em;\r\n}\r\n\r\n.todo {\r\n    display: inline;\r\n    position: relative;\r\n    color: #6842c3;\r\n}\r\n\r\n.todo-date {\r\n    position: relative;\r\n    left: 1.8em;\r\n    margin: 0.2em 0;\r\n    font-size: 0.8em;\r\n    font-style: italic;\r\n    color: #94919c;\r\n}\r\n", ""]);
 
 	// exports
 

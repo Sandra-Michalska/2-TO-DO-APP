@@ -1,11 +1,75 @@
-.color1 {
-    color: blue;
+body {
+    margin: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
-.color2 {
-    color: green;
+#todo-app {
+    width: 70%;
+    margin: 2em auto;
+    padding: 2.5em 1em;
+    background: #f1f1f1;
+    text-align: center;
 }
 
-.color3 {
-    color: red;
+.presentational-components {
+    padding: 0.3em 0;
+}
+
+#list-component {
+    width: 80%;
+    margin: 1em auto;
+    text-align: left;
+}
+
+.todo-div {
+    padding: 0.2em 0 0.3em;
+}
+
+h2 {
+    color: #0e940e;
+}
+
+input[type="text"],
+input[type="search"] {
+    font-family: inherit;
+    font-style: italic;
+    width: 70%;
+    margin: 0.8em 0;
+    padding: 0.3em;
+}
+
+input[type="checkbox"] {
+    width: 13px;
+    height: 13px;
+    margin: -1px 10px 0 0;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+button {
+    margin: 0 0 0 1em;
+    padding: 0.2em 0.8em;
+    font-family: inherit;
+    font-weight: bold;
+    color: #6842c3;
+    cursor: pointer;
+}
+
+#show-completed {
+    font-size: 0.8em;
+}
+
+.todo {
+    display: inline;
+    position: relative;
+    color: #6842c3;
+}
+
+.todo-date {
+    position: relative;
+    left: 1.8em;
+    margin: 0.2em 0;
+    font-size: 0.8em;
+    font-style: italic;
+    color: #94919c;
 }

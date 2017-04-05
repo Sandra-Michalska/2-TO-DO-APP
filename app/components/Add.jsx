@@ -16,10 +16,10 @@ var Add = React.createClass({
     },
     render: function() {
         return (
-            <div>
-                <h2>Add a new TO DO</h2>
+            <div className="presentational-components">
+                <h2>Add a To Do</h2>
                 <form onSubmit={this.handleFormSubmit}>
-                    <input type="text" ref="todo" placeholder="Add a TO DO"/>
+                    <input type="text" ref="todo" placeholder="Your new to do"/>
                     <button>Add</button>
                 </form>
             </div>
