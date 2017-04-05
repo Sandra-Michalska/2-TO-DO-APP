@@ -18,7 +18,7 @@ var List = React.createClass({
 
         return (
             <div>
-                <h2>List of TODOs</h2>
+                <h2 className="color3">List of TODOs</h2>
                 {renderTodos()}
             </div>
         );

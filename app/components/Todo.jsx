@@ -21,7 +21,7 @@ var Todo = React.createClass({
             <div onClick={() => { this.props.onToggle(id); }}>
                 <input type="checkbox" checked={completed}/>
                 {text}
-                <p>{renderDate()}</p>
+                <p className="color1">{renderDate()}</p>
             </div>
         );
     }
