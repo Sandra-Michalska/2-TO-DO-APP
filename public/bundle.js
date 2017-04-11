@@ -46403,8 +46403,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!../../node_modules/css-loader/index.js!./styles.css", function() {
-				var newContent = require("!!../../node_modules/css-loader/index.js!./styles.css");
+			module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./styles.scss", function() {
+				var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./styles.scss");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -46422,7 +46422,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\r\n    margin: 0;\r\n    font-family: \"Comic Sans MS\", cursive, sans-serif;\r\n}\r\n\r\n#todo-app {\r\n    width: 70%;\r\n    margin: 2em auto;\r\n    padding: 2.5em 1em;\r\n    background: #f1f1f1;\r\n    text-align: center;\r\n}\r\n\r\n.presentational-components {\r\n    padding: 0.3em 0;\r\n}\r\n\r\n#list-component {\r\n    width: 80%;\r\n    margin: 1em auto;\r\n    text-align: left;\r\n}\r\n\r\n.todo-div {\r\n    padding: 0.2em 0 0.3em;\r\n}\r\n\r\nh2 {\r\n    color: #0e940e;\r\n}\r\n\r\ninput[type=\"text\"],\r\ninput[type=\"search\"] {\r\n    font-family: inherit;\r\n    font-style: italic;\r\n    width: 70%;\r\n    margin: 0.8em 0;\r\n    padding: 0.3em;\r\n}\r\n\r\ninput[type=\"checkbox\"] {\r\n    width: 13px;\r\n    height: 13px;\r\n    margin: -1px 10px 0 0;\r\n    vertical-align: middle;\r\n    cursor: pointer;\r\n}\r\n\r\nbutton {\r\n    margin: 0 0 0 1em;\r\n    padding: 0.2em 0.8em;\r\n    font-family: inherit;\r\n    font-weight: bold;\r\n    color: #6842c3;\r\n    cursor: pointer;\r\n}\r\n\r\n#show-completed {\r\n    font-size: 0.8em;\r\n}\r\n\r\n.todo {\r\n    display: inline;\r\n    position: relative;\r\n    color: #6842c3;\r\n}\r\n\r\n.todo-date {\r\n    position: relative;\r\n    left: 1.8em;\r\n    margin: 0.2em 0;\r\n    font-size: 0.8em;\r\n    font-style: italic;\r\n    color: #94919c;\r\n}\r\n", ""]);
+	exports.push([module.id, "body {\n  margin: 0;\n  font-family: \"Comic Sans MS\", cursive, sans-serif; }\n\n#todo-app {\n  width: 70%;\n  margin: 2em auto;\n  padding: 2.5em 1em;\n  background: #f1f1f1;\n  text-align: center; }\n\n.presentational-components {\n  padding: 0.3em 0; }\n\n#list-component {\n  width: 80%;\n  margin: 1em auto;\n  text-align: left; }\n\n.todo-div {\n  padding: 0.2em 0 0.3em; }\n\nh2 {\n  color: #0e940e; }\n\ninput[type=\"text\"], input[type=\"search\"] {\n  font-family: inherit;\n  font-style: italic;\n  width: 70%;\n  margin: 0.8em 0;\n  padding: 0.3em; }\n\ninput[type=\"checkbox\"] {\n  width: 33px;\n  height: 33px;\n  margin: -1px 10px 0 0;\n  vertical-align: middle;\n  cursor: pointer; }\n\nbutton {\n  margin: 0 0 0 1em;\n  padding: 0.2em 0.8em;\n  font-family: inherit;\n  font-weight: bold;\n  color: #6842c3;\n  cursor: pointer; }\n\n#show-completed {\n  font-size: 0.8em; }\n\n.todo {\n  display: inline;\n  position: relative;\n  color: #6842c3; }\n\n.todo-date {\n  position: relative;\n  left: 1.8em;\n  margin: 0.2em 0;\n  font-size: 0.8em;\n  font-style: italic;\n  color: #94919c; }\n", ""]);
 
 	// exports
 

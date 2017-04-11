@@ -1,0 +1,89 @@
+$smaller-font: 0.8em;
+$checkbox-size: 33px;
+$h2-color: #0e940e;
+$button-and-todo-color: #6842c3;
+$todo-date-color: #94919c;
+
+body {
+    margin: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+#todo-app {
+    width: 70%;
+    margin: 2em auto;
+    padding: 2.5em 1em;
+    background: #f1f1f1;
+    text-align: center;
+}
+
+.presentational-components {
+    padding: 0.3em 0;
+}
+
+#list-component {
+    width: 80%;
+    margin: 1em auto;
+    text-align: left;
+}
+
+.todo-div {
+    padding: 0.2em 0 0.3em;
+}
+
+h2 {
+    color: $h2-color;
+}
+
+input {
+    &[type="text"],
+    &[type="search"] {
+        font: {
+            family: inherit;
+            style: italic;
+        }
+        width: 70%;
+        margin: 0.8em 0;
+        padding: 0.3em;
+    }
+
+    &[type="checkbox"] {
+        width: $checkbox-size;
+        height: $checkbox-size;
+        margin: -1px 10px 0 0;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+}
+
+button {
+    margin: 0 0 0 1em;
+    padding: 0.2em 0.8em;
+    font: {
+        family: inherit;
+        weight: bold;
+    }
+    color: $button-and-todo-color;
+    cursor: pointer;
+}
+
+#show-completed {
+    font-size: $smaller-font;
+}
+
+.todo {
+    display: inline;
+    position: relative;
+    color: $button-and-todo-color;
+}
+
+.todo-date {
+    position: relative;
+    left: 1.8em;
+    margin: 0.2em 0;
+    font: {
+        size: $smaller-font;
+        style: italic;
+    }
+    color: $todo-date-color;
+}
