@@ -1,6 +1,6 @@
 // return a list of todos
 var React = require('react');
-
+var {connect} = require('react-redux');
 var Todo = require('Todo');
 
 var List = React.createClass({
@@ -11,7 +11,7 @@ var List = React.createClass({
         var renderTodos = () => {
             return todos.map((todo) => {
                 return (
-                    <Todo key={todo.id} {...todo} onToggle={this.props.onToggle}/>
+                    <Todo key={todo.id} {...todo}/>
                 );
             });
         };
@@ -24,4 +24,9 @@ var List = React.createClass({
     }
 });
 
-module.exports = List;
+// connect the List component to the Provider
+module.exports = connect((state) => {
+    return {
+        todos: state.todos
+    }
+})(List);

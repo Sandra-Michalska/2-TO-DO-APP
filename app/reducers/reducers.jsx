@@ -28,7 +28,8 @@ export var todosReducer = (state = [], action) => {
                     id: uuid(),
                     text: action.todo,
                     completed: false,
-                    createdAt: moment().unix()
+                    createdAt: moment().unix(),
+                    completedAt: undefined
                 }
             ]
         case 'TOGGLE_TODO':
@@ -38,7 +39,8 @@ export var todosReducer = (state = [], action) => {
 
                     return {
                         ...todo,
-                        completed: nextCompleted
+                        completed: nextCompleted,
+                        completedAt: nextCompleted ? moment().unix() : undefined
                     }
                 }
             });

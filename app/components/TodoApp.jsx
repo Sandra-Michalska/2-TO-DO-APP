@@ -30,7 +30,8 @@ var TodoApp = React.createClass({
                     id: uuid(),
                     text: todoValue,
                     completed: false,
-                    createdAt: moment().unix()
+                    createdAt: moment().unix(),
+                    completedAt: undefined
                 }
             ]
         });
@@ -39,19 +40,6 @@ var TodoApp = React.createClass({
         this.setState({
             showCompleted: showCompleted,
             search: search.toLowerCase()
-        });
-    },
-    handleToggle: function (id) {
-        var updatedTodos = this.state.todos.map((todo) => {
-            if (todo.id === id) {
-                todo.completed = !todo.completed;
-                todo.completedAt = todo.completed ? moment().unix() : undefined;
-            }
-            return todo;
-        });
-
-        this.setState({
-            todos: updatedTodos
         });
     },
     render: function () {
@@ -63,7 +51,7 @@ var TodoApp = React.createClass({
                 <h1>Your To Do List</h1>
                 <Add onAdd={this.handleAdd}/>
                 <Search onSearch={this.handleSearch}/>
-                <List todos={filteredTodos} onToggle={this.handleToggle}/>
+                <List/>
             </div>
         );
     }
