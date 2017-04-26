@@ -56,18 +56,13 @@
 	var TodoApp = __webpack_require__(205);
 	__webpack_require__(335);
 
-	var actions = __webpack_require__(332);
+	var actions = __webpack_require__(329);
 	var store = __webpack_require__(344).configure();
 
 	// Subscribe to changes
 	store.subscribe(function () {
 	    console.log('New state:', store.getState());
 	});
-
-	// Dispatch actions
-	store.dispatch(actions.addTodo('Clean the house'));
-	store.dispatch(actions.setSearchText('house'));
-	store.dispatch(actions.toggleShowCompleted());
 
 	ReactDOM.render(React.createElement(
 	    Provider,
@@ -22894,8 +22889,8 @@
 	var moment = __webpack_require__(211);
 
 	var Add = __webpack_require__(328);
-	var Search = __webpack_require__(329);
-	var List = __webpack_require__(330);
+	var Search = __webpack_require__(330);
+	var List = __webpack_require__(331);
 	var TodoAPI = __webpack_require__(333);
 
 	var TodoApp = React.createClass({
@@ -22904,7 +22899,7 @@
 	    getInitialState: function getInitialState() {
 	        return {
 	            showCompleted: false,
-	            search: '',
+	            searchText: '',
 	            todos: TodoAPI.getTodos()
 	        };
 	    },
@@ -22924,19 +22919,13 @@
 	            }])
 	        });
 	    },
-	    handleSearch: function handleSearch(showCompleted, search) {
-	        this.setState({
-	            showCompleted: showCompleted,
-	            search: search.toLowerCase()
-	        });
-	    },
 	    render: function render() {
 	        var _state = this.state,
 	            todos = _state.todos,
 	            showCompleted = _state.showCompleted,
-	            search = _state.search;
+	            searchText = _state.searchText;
 
-	        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, search);
+	        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
 	        return React.createElement(
 	            'div',
@@ -38991,17 +38980,23 @@
 	// add a todo to the list
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(159),
+	    connect = _require.connect;
+
+	var actions = __webpack_require__(329);
+
 	var Add = React.createClass({
 	    displayName: 'Add',
 
 	    handleFormSubmit: function handleFormSubmit(e) {
 	        e.preventDefault();
+	        var dispatch = this.props.dispatch;
 
 	        var todoValue = this.refs.todo.value;
 
 	        if (todoValue.length > 0) {
 	            this.refs.todo.value = '';
-	            this.props.onAdd(todoValue);
+	            dispatch(actions.addTodo(todoValue));
 	        } else {
 	            this.refs.todo.focus();
 	        }
@@ -39029,58 +39024,111 @@
 	    }
 	});
 
-	module.exports = Add;
+	module.exports = connect()(Add);
 
 /***/ }),
 /* 329 */
+/***/ (function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	var setSearchText = exports.setSearchText = function setSearchText(text) {
+	    return {
+	        type: 'SET_SEARCH_TEXT',
+	        text: text
+	    };
+	};
+
+	var toggleShowCompleted = exports.toggleShowCompleted = function toggleShowCompleted() {
+	    return {
+	        type: 'TOGGLE_SHOW_COMPLETED'
+	    };
+	};
+
+	var addTodo = exports.addTodo = function addTodo(todo) {
+	    return {
+	        type: 'ADD_TODO',
+	        todo: todo
+	    };
+	};
+
+	var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
+	    return {
+	        type: 'TOGGLE_TODO',
+	        id: id
+	    };
+	};
+
+/***/ }),
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	// respond to user input and pass it to the container which filters todos
 	var React = __webpack_require__(1);
 
+	var _require = __webpack_require__(159),
+	    connect = _require.connect;
+
+	var actions = __webpack_require__(329);
+
 	var Search = React.createClass({
-	    displayName: "Search",
+	    displayName: 'Search',
 
-	    handleSearch: function handleSearch() {
-	        var search = this.refs.search.value;
-	        var showCompleted = this.refs.showCompleted.checked;
-
-	        this.props.onSearch(showCompleted, search);
-	    },
 	    render: function render() {
+	        var _this = this;
+
+	        var _props = this.props,
+	            dispatch = _props.dispatch,
+	            showCompleted = _props.showCompleted,
+	            searchText = _props.searchText;
+
+
 	        return React.createElement(
-	            "div",
-	            { className: "presentational-components" },
+	            'div',
+	            { className: 'presentational-components' },
 	            React.createElement(
-	                "h2",
+	                'h2',
 	                null,
-	                "Your To Dos"
+	                'Your To Dos'
 	            ),
 	            React.createElement(
-	                "div",
+	                'div',
 	                null,
-	                React.createElement("input", { type: "search", ref: "search", placeholder: "Search your to dos", onChange: this.handleSearch })
+	                React.createElement('input', { type: 'search', ref: 'search', placeholder: 'Search your to dos', value: searchText, onChange: function onChange() {
+	                        var searchText = _this.refs.search.value;
+	                        dispatch(actions.setSearchText(searchText));
+	                    } })
 	            ),
 	            React.createElement(
-	                "div",
+	                'div',
 	                null,
-	                React.createElement("input", { type: "checkbox", ref: "showCompleted", id: "checkbox-completed", onChange: this.handleSearch }),
+	                React.createElement('input', { type: 'checkbox', ref: 'showCompleted', checked: showCompleted, id: 'checkbox-completed', onChange: function onChange() {
+	                        dispatch(actions.toggleShowCompleted());
+	                    } }),
 	                React.createElement(
-	                    "label",
-	                    { htmlFor: "checkbox-completed", id: "show-completed" },
-	                    "Show completed to dos"
+	                    'label',
+	                    { htmlFor: 'checkbox-completed', id: 'show-completed' },
+	                    'Show completed to dos'
 	                )
 	            )
 	        );
 	    }
 	});
 
-	module.exports = Search;
+	module.exports = connect(function (state) {
+	    return {
+	        showCompleted: state.showCompleted,
+	        searchText: state.searchText
+	    };
+	})(Search);
 
 /***/ }),
-/* 330 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39093,18 +39141,22 @@
 	var _require = __webpack_require__(159),
 	    connect = _require.connect;
 
-	var Todo = __webpack_require__(331);
+	var Todo = __webpack_require__(332);
+	var TodoAPI = __webpack_require__(333);
 
 	var List = React.createClass({
 	    displayName: 'List',
 
 	    render: function render() {
-	        var todos = this.props.todos;
+	        var _props = this.props,
+	            todos = _props.todos,
+	            showCompleted = _props.showCompleted,
+	            searchText = _props.searchText;
 
 	        // iterate over the list and return an array of Todos
 
 	        var renderTodos = function renderTodos() {
-	            return todos.map(function (todo) {
+	            return TodoAPI.filterTodos(todos, showCompleted, searchText).map(function (todo) {
 	                return React.createElement(Todo, _extends({ key: todo.id }, todo));
 	            });
 	        };
@@ -39119,13 +39171,11 @@
 
 	// connect the List component to the Provider
 	module.exports = connect(function (state) {
-	    return {
-	        todos: state.todos
-	    };
+	    return state;
 	})(List);
 
 /***/ }),
-/* 331 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -39137,7 +39187,7 @@
 	    connect = _require.connect;
 
 	var moment = __webpack_require__(211);
-	var actions = __webpack_require__(332);
+	var actions = __webpack_require__(329);
 
 	var Todo = React.createClass({
 	    displayName: 'Todo',
@@ -39187,42 +39237,6 @@
 	module.exports = connect()(Todo);
 
 /***/ }),
-/* 332 */
-/***/ (function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	var setSearchText = exports.setSearchText = function setSearchText(text) {
-	    return {
-	        type: 'SET_SEARCH_TEXT',
-	        text: text
-	    };
-	};
-
-	var toggleShowCompleted = exports.toggleShowCompleted = function toggleShowCompleted() {
-	    return {
-	        type: 'TOGGLE_SHOW_COMPLETED'
-	    };
-	};
-
-	var addTodo = exports.addTodo = function addTodo(todo) {
-	    return {
-	        type: 'ADD_TODO',
-	        todo: todo
-	    };
-	};
-
-	var toggleTodo = exports.toggleTodo = function toggleTodo(id) {
-	    return {
-	        type: 'TOGGLE_TODO',
-	        id: id
-	    };
-	};
-
-/***/ }),
 /* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39248,7 +39262,7 @@
 
 	        return $.isArray(todos) ? todos : [];
 	    },
-	    filterTodos: function filterTodos(todos, showCompleted, search) {
+	    filterTodos: function filterTodos(todos, showCompleted, searchText) {
 	        var filteredTodos = todos;
 
 	        // filter by showCompleted
@@ -39259,7 +39273,7 @@
 	        // filter by search
 	        filteredTodos = filteredTodos.filter(function (todo) {
 	            var text = todo.text.toLowerCase();
-	            return search.length === 0 || text.indexOf(search) > -1;
+	            return searchText.length === 0 || text.indexOf(searchText) > -1;
 	        });
 
 	        // sort todos with non-completed first
@@ -52159,6 +52173,8 @@
 	                        completed: nextCompleted,
 	                        completedAt: nextCompleted ? moment().unix() : undefined
 	                    });
+	                } else {
+	                    return todo;
 	                }
 	            });
 	        default:

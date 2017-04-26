@@ -14,11 +14,6 @@ store.subscribe(() => {
     console.log('New state:', store.getState());
 });
 
-// Dispatch actions
-store.dispatch(actions.addTodo('Clean the house'));
-store.dispatch(actions.setSearchText('house'));
-store.dispatch(actions.toggleShowCompleted());
-
 ReactDOM.render(
     <Provider store={store}>
         <TodoApp />

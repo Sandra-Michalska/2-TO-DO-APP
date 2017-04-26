@@ -2,14 +2,15 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var Todo = require('Todo');
+var TodoAPI = require('TodoAPI');
 
 var List = React.createClass({
     render: function() {
-        var {todos} = this.props;
+        var {todos, showCompleted, searchText} = this.props;
 
         // iterate over the list and return an array of Todos
         var renderTodos = () => {
-            return todos.map((todo) => {
+            return TodoAPI.filterTodos(todos, showCompleted, searchText).map((todo) => {
                 return (
                     <Todo key={todo.id} {...todo}/>
                 );
@@ -26,7 +27,5 @@ var List = React.createClass({
 
 // connect the List component to the Provider
 module.exports = connect((state) => {
-    return {
-        todos: state.todos
-    }
+    return state;
 })(List);

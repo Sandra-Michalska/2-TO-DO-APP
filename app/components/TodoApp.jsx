@@ -13,7 +13,7 @@ var TodoApp = React.createClass({
     getInitialState: function () {
         return {
             showCompleted: false,
-            search: '',
+            searchText: '',
             todos: TodoAPI.getTodos()
         };
     },
@@ -36,15 +36,9 @@ var TodoApp = React.createClass({
             ]
         });
     },
-    handleSearch: function (showCompleted, search) {
-        this.setState({
-            showCompleted: showCompleted,
-            search: search.toLowerCase()
-        });
-    },
     render: function () {
-        var {todos, showCompleted, search} = this.state;
-        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, search);
+        var {todos, showCompleted, searchText} = this.state;
+        var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
 
         return (
             <div id="todo-app">

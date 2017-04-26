@@ -20,7 +20,7 @@ module.exports = {
 
         return $.isArray(todos) ? todos : [];
     },
-    filterTodos: function (todos, showCompleted, search) {
+    filterTodos: function (todos, showCompleted, searchText) {
         var filteredTodos = todos;
 
         // filter by showCompleted
@@ -31,7 +31,7 @@ module.exports = {
         // filter by search
         filteredTodos = filteredTodos.filter((todo) => {
             var text = todo.text.toLowerCase();
-            return search.length === 0 || text.indexOf(search) > -1;
+            return searchText.length === 0 || text.indexOf(searchText) > -1;
         });
 
         // sort todos with non-completed first
