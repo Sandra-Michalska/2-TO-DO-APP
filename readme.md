@@ -8,3 +8,5 @@ To run the app you first need to:
 - Have Node.js installed,
 - Run the npm install command to install node modules listed in package.json locally,
 - Run the npm start command to run the server.
+
+![screenshot](/todoscreen.png)
