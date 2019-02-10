@@ -8,6 +8,4 @@ Running the app: npm install, npm start
 
 Then go to http://localhost:3000/ in your browser.
 
-You can also view the app [here](http://sandramichalska.pl/to-do-app/).
-
 ![screenshot](/todoscreen.png)
